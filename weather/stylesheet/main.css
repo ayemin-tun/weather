@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+body{
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(to left,rgb(68, 163, 241),cyan);
+    margin:none;
+    padding: none;
+}
+.weather-card{
+    border-radius: 15px;
+    width: 500px;
+    background:  white;
+    margin-top: 20px;
+    background: linear-gradient(to left,rgb(68, 163, 241),rgb(75, 58, 231));
+    padding:10px 30px;
+    
+}
+.searchLocation {
+    padding:10px;
+}
+.searchLocation form{
+    display: flex;
+    justify-content: space-between;
+}
+.cityInput{
+    width:100%;
+    font-size: 15px;
+    padding:10px;
+    border:none;
+    outline: none;
+    border-radius: 5px 0 0 5px;
+}
+.searchBtn{
+    margin-left: 1px;
+    color:white;
+    border-radius:0 5px 5px 0 ;
+    border:none;
+    cursor: pointer;
+    background:blue;
+}
+.temperature b{
+    display: flex;
+    justify-content: space-between;
+    font-size: 35px;
+    font-family: 'Lilita One', cursive;
+}
+.currentLocation{
+    display: flex;
+    justify-content: space-between;
+    padding:10px;
+    color:white;
+    border-bottom: 1px solid cyan;
+}
+.currentLocation button{
+    background: blue;
+    padding:5px;
+    border: none;
+    color:white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.currentLocationWeather{
+    background-color: rgba(0, 0, 0, 0.3);
+    display:none;
+    padding: 30px;
+    border-radius: 15px;
+    margin:10px;
+    color:white;
+}
+.currentLocationWeather .box1{
+    display: flex;
+    justify-content: space-between;
+}
+.box1 .cityDetail .cityName b{
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 2px;
+}
+.error-text{
+    display: none;
+    margin-top: 5px;
+    font-size: 15px;
+    color:white;
+    padding:5px;
+    border-radius: 5px;
+}
