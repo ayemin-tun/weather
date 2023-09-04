@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>current Location weather</title>
+</head>
+<style>
+    body{
+        display: flex;
+        justify-content: left;
+    }
+    .currentWeather{
+        align-items: center;
+        padding: 10px;
+        background:linear-gradient(to right,rgb(88, 202, 236),rgb(72, 72, 194));
+        color:white;
+        border-radius: 10px;
+        display: none;
+    }
+    .currentWeather p{
+        margin: 10px;
+    }
+    .weather-icon{
+    }
+</style>
+<body>
+    <div class="currentWeather">
+        <p class="cityName"></p>
+        <p class="temperature"></p>
+        <img alt="" class="weather-icon">
+        <p class="description"></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function getLocation(){
+            if("geolocation" in navigator){
+                console.log("Geo Location is support");
+                navigator.geolocation.getCurrentPosition(
+                    function(position){
+                        const lat = position.coords.latitude;
+                        const long = position.coords.longitude;
+                        console.log(lat+" "+long);
+                        getWeather(lat,long);
+                    },
+                    function(error){
+                        console.log(error.message);
+                    }
+                );
+            }
+            else{
+                console.log("Geo Location is not support your browser");
+            }
+        }
+        function getWeather(lat,lon){
+            const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=56342db16786477e13abe80d38e62e0f&units=metric`;
+            axios.get(url)
+            .then(
+                function (response){
+                    const weatherData = response.data;
+                    document.querySelector(".cityName").innerHTML = weatherData.name;
+                    document.querySelector(".temperature").innerHTML = weatherData.main.temp.toFixed(1)+"&deg;C";
+                    document.querySelector(".description").innerHTML = weatherData.weather[0].main;
+                    document.querySelector(".weather-icon").src = "https://openweathermap.org/img/wn/"+weatherData.weather[0].icon+".png";
+                    document.querySelector(".currentWeather").style.display = "flex";
+                    console.log(weatherData);
+                }
+            )
+            .catch(function (error){
+                console.log(error);
+            });
+        }
+        getLocation();
+    </script>
+</body>
+</html>
